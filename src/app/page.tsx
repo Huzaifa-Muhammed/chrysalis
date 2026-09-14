@@ -1,69 +1,106 @@
 import Image from "next/image";
+import Link from "next/link";
+import { EdgeRail } from "@/components/edge-rail";
+import { OnPageNav } from "@/components/on-page-nav";
+import { ProductCards } from "@/components/product-cards";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 
-export default function Home() {
+const onPage = [
+  { href: "#a-trusted-partner-for-families", label: "Who we are" },
+  { href: "#our-products-and-services", label: "Products" },
+  { href: "#we-are-here-for-you", label: "Contact" },
+];
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <div className="bg-white">
+      <EdgeRail />
+      <SiteHeader />
+      <OnPageNav items={onPage} />
+
+      <section className="wrap relative pt-[26px] pb-[92px] max-[680px]:pb-14">
+        <div className="relative grid min-h-[392px] grid-cols-2 items-center gap-10 max-[1000px]:min-h-0 max-[1000px]:grid-cols-1 max-[1000px]:gap-7">
+          {/* Offset paper plates behind the headline — decorative only */}
+          <span className="absolute top-1.5 -left-[26px] z-0 h-[84px] w-[452px] border border-[#EFEDE8] bg-white max-[1000px]:hidden" />
+          <span className="absolute top-[100px] -left-[26px] z-0 h-[132px] w-[452px] border border-[#EFEDE8] bg-white max-[1000px]:hidden" />
+          <span className="absolute top-[214px] left-[318px] z-0 h-[70px] w-[112px] border border-[#EFEDE8] bg-white max-[1000px]:hidden" />
+
+          <div className="relative z-[2]">
+            <h1 className="font-display text-[clamp(36px,4.5vw,58px)] leading-[1.06] font-semibold tracking-[-.03em] text-balance">
+              Education built around{" "}
+              <em className="font-serif font-normal tracking-normal italic">you</em>.
+            </h1>
+          </div>
+
+          <div className="relative z-[1] overflow-hidden rounded-[14px]">
             <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+              src="/img/family-hero.jpg"
+              alt="A family together at home"
+              width={1200}
+              height={820}
+              priority
+              className="h-auto w-full rounded-[14px]"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
         </div>
-      </main>
+      </section>
+
+      <section id="a-trusted-partner-for-families" className="wrap pt-2 pb-[84px]">
+        <div className="grid grid-cols-[minmax(0,.82fr)_minmax(0,1fr)] items-start gap-[60px] max-[1000px]:grid-cols-1 max-[1000px]:gap-6">
+          <h2 className="max-w-[14ch] font-display text-[clamp(26px,3.1vw,38px)] leading-[1.2] font-normal tracking-[-.02em] text-ink-soft">
+            A trusted partner for families
+          </h2>
+          <div>
+            <p className="mb-[18px] max-w-[62ch] text-[15px] leading-[1.85] text-muted">
+              Education today is expensive, fragmented and difficult to navigate. Families are
+              expected to hold it all together themselves — the school, tutors, assessments, exam
+              preparation and everything in between — while managing work, family life and a job
+              market that keeps changing.
+            </p>
+            <p className="mb-[18px] max-w-[62ch] text-[15px] leading-[1.85] text-muted">
+              We bring it all together under one roof: the experts, the resources and the
+              technology, working from the same picture and around the needs of each student.
+            </p>
+            <p className="max-w-[62ch] text-[15px] leading-[1.85] text-muted">
+              <strong className="font-semibold text-ink">
+                Our membership is priced so that getting the right support for your child does not
+                become another financial burden.
+              </strong>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="our-products-and-services" className="bg-[#F5F1EE] pt-14 pb-[62px] max-[680px]:py-11">
+        <div className="wrap">
+          <h2 className="mb-1.5 font-display text-[clamp(25px,3vw,36px)] leading-[1.2] font-normal tracking-[-.02em] text-ink-soft">
+            Our products and services
+          </h2>
+          <ProductCards />
+        </div>
+      </section>
+
+      <section id="we-are-here-for-you" className="bg-[#F1EFEC] pt-[52px] pb-[58px] text-center max-[680px]:py-11">
+        <div className="wrap">
+          <h2 className="font-display text-[clamp(23px,2.7vw,32px)] font-normal tracking-[-.02em] text-ink-soft">
+            We are here for you
+          </h2>
+          <p className="mt-3 text-[14.5px] text-muted">
+            Talk to us about your child, or start free on any of our products today.
+          </p>
+          <div className="mt-[26px] flex flex-wrap justify-center gap-3.5">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-[9px] rounded-full bg-plum px-[26px] py-[13px] text-sm font-semibold text-white transition-colors hover:bg-plum-dark max-[680px]:w-full max-[680px]:justify-center"
+            >
+              Contact us <span>›</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <SiteFooter />
     </div>
   );
 }

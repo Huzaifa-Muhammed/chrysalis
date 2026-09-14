@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Chrysalis Education — Next.js front end
 
-## Getting Started
-
-First, run the development server:
+A React/Next.js port of the static build in `../UI_design/CHRYSALIS WEBSITE FILES/`.
+UI only: nothing here talks to a backend yet.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev     # http://localhost:3000
+npm run build   # all pages prerender statically
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Pages ported (5 of 24)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Route | Source file | Design system |
+|---|---|---|
+| `/` | `index.html` | Chrysalis |
+| `/concierge` | `concierge.html` | Nova |
+| `/dexter` | `dexter/solutions.html` | Dexter |
+| `/spark` | `spark-ai-program.html` | Chrysalis |
+| `/contact` | `contact.html` | Chrysalis |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The drawer, footers and some cards link to routes that don't exist yet
+(`/about`, `/careers`, `/support`, `/why`, the Spark course detail pages, the
+Dexter article pages, and the legal pages). The information architecture is
+intact so those slot in without touching what's here.
 
-## Learn More
+## Three design systems, one token set
 
-To learn more about Next.js, take a look at the following resources:
+`src/app/globals.css` holds all three `:root` blocks from the static build as
+Tailwind v4 `@theme` tokens, so the palettes can't drift apart:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Chrysalis** — `plum` / `amber` / `paper`, `font-display` (Archivo) + `font-body` (IBM Plex Sans)
+- **Nova** — `coral` / `nova-shell` / `nova-band`, `font-nova-display` (Outfit) + `font-nova-body` (Plus Jakarta Sans)
+- **Dexter** — `accent` / `accent-deep` / `accent-soft`, same type as Chrysalis
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Fonts are self-hosted through `next/font/google` in `src/app/layout.tsx`.
 
-## Deploy on Vercel
+`--gutter` and `--shell` reproduce the original responsive gutters; `.shell`
+and `.wrap` are the two container widths the static pages used.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Layout
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+  app/           one folder per route, each a server component
+  components/    shared chrome (header, footer, rail, on-page nav)
+    nova/        Concierge-only interactive parts
+  content/       page copy and data, kept out of the markup
+```
+
+`SiteHeader` takes a `brand` prop (`chrysalis` | `nova` | `dexter`) that swaps
+the drawer palette — the markup itself is shared, as in the static build.
+
+Everything is a server component except the pieces that need state: the drawer,
+the sticky on-page nav, the 30-second tour, the Concierge tabs / plan table /
+card rails, the Dexter audience tabs, and the contact form.
+
+## Known gaps carried over from the static build
+
+- **The contact form has no endpoint.** `src/components/contact-form.tsx` holds
+  local state and shows a confirmation; swap the handler for a `fetch()` POST.
+  The static build used `mailto:` here and in five other forms.
+- **The 30-second tour's photo slots are unfilled** — coloured panels labelled
+  "Manager photo" etc., same as the source.
+- **Social links and legal pages are placeholders** (`href="#"` in the source).
+- **WhatsApp number is a placeholder** — `9710000000000` on `/contact`.
+- **No Arabic.** The language chips advertise Arabic and Urdu; adding either
+  needs full RTL mirroring, not translation.
+
+## Content accuracy
+
+Facts a developer should not silently change (from the source handover):
+Spark courses start **January 2027** and prices are not shown on the hub; Spark
+Pass is **coming soon**, not purchasable; the Concierge testimonials are **real
+named customers**; Dexter tiers are Free / $250 / $500 / $700 / Enterprise; EDU
+Concierge tiers are Free / AED 49 / AED 350 / AED 575–750.
