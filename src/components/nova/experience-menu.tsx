@@ -3,7 +3,16 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-const options = [
+type Option = {
+  href: string;
+  title: string;
+  note: string;
+  external: boolean;
+  /** Present when the link opens the get-started form instead of navigating. */
+  join?: string;
+};
+
+const options: Option[] = [
   {
     href: "mailto:concierge@chrysalis.education?subject=Try%20EDU%20Concierge%20for%20free",
     title: "Try for free",
@@ -11,10 +20,11 @@ const options = [
     external: true,
   },
   {
-    href: "#plans",
+    href: "#get-started",
+    join: "Not sure yet",
     title: "Get started",
     note: "Pick a plan and begin this term",
-    external: false,
+    external: true,
   },
   {
     href: "/contact",
@@ -41,6 +51,7 @@ export function ExperienceMenu() {
     <div ref={wrapRef} className="relative inline-block">
       <button
         type="button"
+        id="experience-cta"
         aria-expanded={open}
         aria-controls="experience-menu"
         onClick={() => setOpen((value) => !value)}
@@ -62,6 +73,8 @@ export function ExperienceMenu() {
             <a
               key={option.title}
               href={option.href}
+              data-join={option.join}
+              onClick={() => setOpen(false)}
               className="flex items-center gap-[13px] rounded-xl px-3.5 py-[13px] transition-colors hover:bg-nova-band"
             >
               <MenuRow {...option} />

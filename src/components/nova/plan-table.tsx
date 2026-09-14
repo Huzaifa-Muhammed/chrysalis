@@ -39,7 +39,10 @@ export function PlanTable() {
 
       <div className="overflow-hidden rounded-[24px] bg-white">
         {/* Plan heads */}
-        <div className="grid grid-cols-[minmax(0,1.5fr)_repeat(4,minmax(0,1fr))] gap-x-3 border-b border-nova-line p-6 max-[1000px]:grid-cols-1 max-[680px]:p-4">
+        <div
+          data-fab-stand-down
+          className="grid grid-cols-[minmax(0,1.5fr)_repeat(4,minmax(0,1fr))] gap-x-3 border-b border-nova-line p-6 max-[1000px]:grid-cols-1 max-[680px]:p-4"
+        >
           <span className="max-[1000px]:hidden" />
           {plans.map((plan, index) => {
             const isFamily = plan.id === "family";
@@ -83,6 +86,7 @@ export function PlanTable() {
                 ) : null}
                 <a
                   href="#get-started"
+                  data-join={plan.name}
                   className={`mt-2 inline-flex items-center justify-center gap-2 rounded-full px-3.5 py-2 font-nova-display text-[12px] font-semibold transition-colors ${
                     plan.best
                       ? "bg-coral text-white hover:bg-coral-dk"
@@ -90,7 +94,7 @@ export function PlanTable() {
                   }`}
                 >
                   <span>↗</span>
-                  <span>{plan.cta}</span>
+                  <span>{plan.headCta}</span>
                 </a>
               </span>
             );
@@ -150,7 +154,10 @@ export function PlanTable() {
           </button>
         </div>
 
-        <div className="grid grid-cols-[minmax(0,1.5fr)_repeat(4,minmax(0,1fr))] items-center gap-x-3 border-t border-nova-line px-6 py-4 max-[1000px]:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] max-[680px]:px-4">
+        <div
+          data-fab-stand-down
+          className="grid grid-cols-[minmax(0,1.5fr)_repeat(4,minmax(0,1fr))] items-center gap-x-3 border-t border-nova-line px-6 py-4 max-[1000px]:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] max-[680px]:px-4"
+        >
           <span className="text-[12.5px] text-nova-muted">
             Same price in every region. No hidden extras.
           </span>
@@ -161,6 +168,7 @@ export function PlanTable() {
             >
               <a
                 href="#get-started"
+                data-join={plan.name}
                 className={`inline-flex items-center justify-center gap-2 rounded-full px-3.5 py-2 font-nova-display text-[12px] font-semibold transition-colors ${
                   plan.best
                     ? "bg-coral text-white hover:bg-coral-dk"

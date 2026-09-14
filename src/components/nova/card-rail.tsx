@@ -84,7 +84,10 @@ export function CardRail({
         {children}
       </div>
 
-      <div className="mt-5 flex flex-wrap items-center justify-between gap-5">
+      <div
+        data-fab-stand-down={footer ? "" : undefined}
+        className="mt-5 flex flex-wrap items-center justify-between gap-5"
+      >
         <span className="block h-[3px] w-[min(320px,100%)] flex-1 overflow-hidden rounded-full bg-nova-line">
           <i
             className="block h-full rounded-full bg-coral transition-[width] duration-200"

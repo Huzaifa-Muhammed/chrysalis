@@ -7,9 +7,12 @@ import { CardRail } from "@/components/nova/card-rail";
 import { CompareCost } from "@/components/nova/compare-cost";
 import { CostPanel } from "@/components/nova/cost-panel";
 import { ExperienceMenu } from "@/components/nova/experience-menu";
-import { FaqAccordion } from "@/components/nova/faq-accordion";
+import { FaqChat } from "@/components/nova/faq-chat";
+import { GetStartedFab } from "@/components/nova/get-started-fab";
+import { JoinModal } from "@/components/nova/join-modal";
+import { NovaOnPageNav } from "@/components/nova/nova-on-page-nav";
 import { PlanTable } from "@/components/nova/plan-table";
-import { drivers, howWeWork, steps, testimonials } from "@/content/concierge";
+import { conciergeOnPage, drivers, howWeWork, steps, testimonials } from "@/content/concierge";
 import { footerColumns, legalNav } from "@/content/nav";
 
 export const metadata: Metadata = {
@@ -43,6 +46,7 @@ export default function ConciergePage() {
     <div className="bg-nova-page px-[clamp(14px,6.5vw,94px)] pt-[clamp(14px,6.5vw,94px)] pb-[clamp(30px,6vw,80px)] font-nova-body text-nova-ink">
       <div className="mx-auto max-w-[var(--nova-max)] overflow-hidden rounded-[28px] bg-nova-shell">
         <SiteHeader brand="nova" />
+        <NovaOnPageNav items={conciergeOnPage} />
 
         {/* ── Hero ─────────────────────────────────────────────── */}
         <div className="grid grid-cols-[minmax(0,241fr)_minmax(0,581fr)_minmax(0,268fr)] items-start gap-[26px] px-[var(--nova-gut)] pt-[46px] pb-[76px] max-[1100px]:grid-cols-1 max-[1100px]:gap-10">
@@ -277,17 +281,7 @@ export default function ConciergePage() {
           <CardRail
             title="What families say"
             lede="Real words from parents and students in the programme."
-            footer={
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2.5 rounded-full bg-white py-2.5 pr-5 pl-2.5 font-nova-display text-[13px] font-semibold transition-colors hover:bg-coral hover:text-white"
-              >
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-coral text-[13px] text-white">
-                  ↗
-                </span>
-                <span>Get Started</span>
-              </Link>
-            }
+            footer={<GetStartedPill />}
           >
             {testimonials.map((item) => (
               <figure
@@ -328,8 +322,8 @@ export default function ConciergePage() {
 
         {/* ── Plans ────────────────────────────────────────────── */}
         <section id="plans" className="px-[var(--nova-gut)] py-14">
-          <div className="mb-7 flex flex-wrap items-center justify-between gap-5">
-            <h2 className="font-nova-display text-[clamp(24px,2.5vw,34px)] leading-[1.06] font-normal tracking-[-.01em] uppercase">
+          <div className="mb-8 flex flex-col items-center gap-5 text-center">
+            <h2 className="max-w-[22ch] font-nova-display text-[clamp(24px,2.5vw,34px)] leading-[1.06] font-normal tracking-[-.01em] uppercase">
               Find the right plan for you
             </h2>
             <CompareCost />
@@ -357,6 +351,7 @@ export default function ConciergePage() {
           <CardRail
             title="Getting started"
             lede="Six steps, and we do most of them. From signing up to your first learning track, the work is on our side."
+            footer={<GetStartedPill />}
           >
             {steps.map((step) => (
               <div
@@ -383,21 +378,22 @@ export default function ConciergePage() {
         </section>
 
         {/* ── FAQ ──────────────────────────────────────────────── */}
-        <section id="faq" className="px-[var(--nova-gut)] py-14">
-          <div className="grid grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] items-start gap-[22px] max-[1000px]:grid-cols-1">
-            <div>
-              <h2 className="font-nova-display text-[clamp(24px,2.5vw,34px)] leading-[1.06] font-normal tracking-[-.01em] uppercase">
+        <section id="faq" className="overflow-hidden bg-[#D9B293] px-[var(--nova-gut)] py-14">
+          <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,.72fr)] items-stretch gap-11 max-[900px]:grid-cols-1 max-[900px]:gap-7">
+            <div className="flex flex-col items-center">
+              <h2 className="text-center font-nova-display text-[clamp(24px,2.5vw,34px)] leading-[1.06] font-normal tracking-[-.01em] uppercase">
                 What families ask
               </h2>
-              <FaqAccordion />
+              <FaqChat />
             </div>
-            <div className="overflow-hidden rounded-[24px] bg-nova-panel">
+            {/* The photo bleeds off the right edge of the shell, as in the design. */}
+            <div className="relative -my-14 -mr-[var(--nova-gut)] overflow-hidden max-[900px]:m-0 max-[900px]:aspect-[16/11]">
               <Image
                 src="/img/family.jpg"
                 alt="A family of four smiling together"
-                width={901}
-                height={1000}
-                className="h-full w-full object-cover"
+                fill
+                sizes="(max-width: 900px) 100vw, 40vw"
+                className="object-cover object-[50%_30%]"
               />
             </div>
           </div>
@@ -405,7 +401,26 @@ export default function ConciergePage() {
 
         <NovaFooter />
       </div>
+
+      <GetStartedFab />
+      <JoinModal />
     </div>
+  );
+}
+
+/** The Get Started pill that closes each card rail. */
+function GetStartedPill() {
+  return (
+    <a
+      href="#get-started"
+      data-join="Not sure yet"
+      className="inline-flex items-center gap-2.5 rounded-full bg-white py-2.5 pr-5 pl-2.5 font-nova-display text-[13px] font-semibold transition-colors hover:bg-coral hover:text-white"
+    >
+      <span className="flex h-7 w-7 items-center justify-center rounded-full bg-coral text-[13px] text-white">
+        ↗
+      </span>
+      <span>Get Started</span>
+    </a>
   );
 }
 

@@ -304,6 +304,7 @@ export function CompareCost() {
             <div className="mt-5">
               <a
                 href="#get-started"
+                data-join="Not sure yet"
                 onClick={close}
                 className="inline-flex items-center gap-2.5 rounded-full bg-coral py-2.5 pr-5 pl-2.5 font-nova-display text-[13px] font-semibold text-white transition-colors hover:bg-coral-dk"
               >

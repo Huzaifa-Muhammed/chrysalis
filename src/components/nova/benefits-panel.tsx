@@ -3,9 +3,12 @@
 import { useState } from "react";
 import { benefitTabs, benefits, overviewBlocks, type BenefitTab } from "@/content/concierge";
 
+/** Each tab lands with its first item already open, so no tab reads as empty. */
+const firstOf = (tab: BenefitTab) => benefits.find((item) => item.tab === tab)?.q ?? null;
+
 export function BenefitsPanel() {
   const [tab, setTab] = useState<BenefitTab>("overview");
-  const [open, setOpen] = useState<string | null>(null);
+  const [open, setOpen] = useState<string | null>(firstOf("included"));
   const visible = benefits.filter((item) => item.tab === tab);
 
   return (
@@ -19,7 +22,7 @@ export function BenefitsPanel() {
             aria-selected={tab === item.id}
             onClick={() => {
               setTab(item.id);
-              setOpen(null);
+              setOpen(firstOf(item.id));
             }}
             className={`inline-flex cursor-pointer items-center gap-[7px] rounded-full border-0 px-[18px] py-2.5 font-nova-display text-[12.5px] font-medium transition-all duration-200 ${
               tab === item.id

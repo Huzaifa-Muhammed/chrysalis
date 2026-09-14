@@ -25,6 +25,11 @@ export const benefitTabs: { id: BenefitTab; label: string }[] = [
 export const benefits: { tab: BenefitTab; q: string; a?: string; list?: string[] }[] = [
   {
     tab: "included",
+    q: "All-in-one education management",
+    a: "An experienced Education Manager who tracks progress over time rather than grades, watches for stress and burnout signals, as well as fitness and wellbeing, and adjusts the plan weekly and termly — reporting to the parents.",
+  },
+  {
+    tab: "included",
     q: "Is there really a free option?",
     a: "Yes. Free members can join any scheduled class when a seat is open — up to two hours a month — and get limited access to our worksheets and learning resources. There is no Education Manager, no reporting and no guaranteed place; paid plans hold a seat for your child every week.",
   },
@@ -32,11 +37,6 @@ export const benefits: { tab: BenefitTab; q: string; a?: string; list?: string[]
     tab: "included",
     q: "Foundation support, included",
     a: "Scheduled live sessions with subject-expert teachers who keep your child steady at curriculum level through the term — so the burden doesn't pile up near exams.",
-  },
-  {
-    tab: "included",
-    q: "All-in-one education management",
-    a: "An experienced Education Manager who tracks progress over time rather than grades, watches for stress and burnout signals, as well as fitness and wellbeing, and adjusts the plan weekly and termly — reporting to the parents.",
   },
   {
     tab: "included",
@@ -249,22 +249,54 @@ export type Plan = {
   name: string;
   price: string;
   per: string;
+  /** Short label in the plan head, where the column name sits right above it. */
+  headCta: string;
+  /** Full label in the closing row, which has to stand on its own. */
   cta: string;
   /** Highlighted column in the plan table. */
   best?: boolean;
 };
 
 export const plans: Plan[] = [
-  { id: "free", name: "Free", price: "AED 0", per: "2 hours a month · seat permitting", cta: "Join free" },
-  { id: "base", name: "Base", price: "AED 49", per: "per month · 1 student", cta: "Start Base" },
-  { id: "plus", name: "Plus", price: "AED 350", per: "per month · 1 student", cta: "Start Plus", best: true },
-  { id: "family", name: "Family", price: "AED 575", per: "per month · 2 students", cta: "Start Family" },
+  {
+    id: "free",
+    name: "Free",
+    price: "AED 0",
+    per: "2 hours a month · seat permitting",
+    headCta: "Join free",
+    cta: "Join free",
+  },
+  {
+    id: "base",
+    name: "Base",
+    price: "AED 49",
+    per: "per month · 1 student",
+    headCta: "Start",
+    cta: "Start Base",
+  },
+  {
+    id: "plus",
+    name: "Plus",
+    price: "AED 350",
+    per: "per month · 1 student",
+    headCta: "Start",
+    cta: "Start Plus",
+    best: true,
+  },
+  {
+    id: "family",
+    name: "Family",
+    price: "AED 575",
+    per: "per month · 2 students",
+    headCta: "Start",
+    cta: "Start Family",
+  },
 ];
 
 /** Family pricing is per household and depends on how many children are covered. */
 export const familyPricing: Record<2 | 3, { price: string; per: string }> = {
-  2: { price: "AED 575", per: "per month · 2 students" },
-  3: { price: "AED 750", per: "per month · 3 students" },
+  2: { price: "AED 575", per: "per month · 2 students · AED 288 each" },
+  3: { price: "AED 750", per: "per month · 3 students · AED 250 each" },
 };
 
 export type FeatureRow = {
@@ -488,5 +520,52 @@ export const beyondRows: { label: string; note?: string; tutor: string }[] = [
     label: "The hours you'd spend finding and coordinating tutors",
     note: "Chasing, vetting, comparing, patching feedback together",
     tutor: "Yours",
+  },
+];
+
+/** Sticky "on this page" nav for the concierge page. */
+export const conciergeOnPage = [
+  { href: "#included", label: "Programme" },
+  { href: "#problem", label: "The problem" },
+  { href: "#trust", label: "How we work" },
+  { href: "#plans", label: "Plans" },
+  { href: "#faq", label: "Questions" },
+];
+
+/**
+ * Get-started form. Every CTA on the page carries a `data-join` value that
+ * preselects the matching membership level when the modal opens.
+ */
+export const joinPlanOptions = [
+  { value: "Free", label: "Free — join a class when a seat is open" },
+  { value: "Base", label: "Base — AED 49 / month" },
+  { value: "Plus", label: "Plus — AED 350 / month" },
+  { value: "Family", label: "Family — AED 575 / month" },
+  { value: "Not sure yet", label: "Not sure yet — help me choose" },
+];
+
+export const joinDefaultPlan = "Plus";
+
+/** Shown after the form is sent, so the family knows what happens next. */
+export const onboardingSteps = [
+  {
+    title: "Matching your Education Manager",
+    body: "Chosen for your child's age, year group, school system and learning needs.",
+  },
+  {
+    title: "A 30-minute welcome call",
+    body: "To understand your child, your school, and what success looks like for your family.",
+  },
+  {
+    title: "A learning style assessment",
+    body: "Showing how your child learns best and where support will help most. Plus and Family.",
+  },
+  {
+    title: "A student welcome session",
+    body: "Your child meets their Education Manager and is set up on the app and live learning tools.",
+  },
+  {
+    title: "Your learning track",
+    body: "A personalised plan with milestones and checkpoints, agreed with you and adjusted each term.",
   },
 ];
