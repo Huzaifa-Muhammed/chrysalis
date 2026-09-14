@@ -150,8 +150,28 @@ export function PlanTable() {
           </button>
         </div>
 
-        <div className="border-t border-nova-line px-6 py-4 text-[12.5px] text-nova-muted max-[680px]:px-4">
-          Same price in every region. No hidden extras.
+        <div className="grid grid-cols-[minmax(0,1.5fr)_repeat(4,minmax(0,1fr))] items-center gap-x-3 border-t border-nova-line px-6 py-4 max-[1000px]:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] max-[680px]:px-4">
+          <span className="text-[12.5px] text-nova-muted">
+            Same price in every region. No hidden extras.
+          </span>
+          {plans.map((plan, index) => (
+            <span
+              key={plan.id}
+              className={`flex justify-center ${column === index ? "" : "max-[1000px]:hidden"}`}
+            >
+              <a
+                href="#get-started"
+                className={`inline-flex items-center justify-center gap-2 rounded-full px-3.5 py-2 font-nova-display text-[12px] font-semibold transition-colors ${
+                  plan.best
+                    ? "bg-coral text-white hover:bg-coral-dk"
+                    : "border border-nova-line bg-white text-nova-ink hover:border-nova-ink"
+                }`}
+              >
+                <span>↗</span>
+                <span>{plan.cta}</span>
+              </a>
+            </span>
+          ))}
         </div>
       </div>
     </div>

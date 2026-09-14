@@ -424,3 +424,69 @@ export const faqs = [
     a: "No. All teachers and Education Managers are full-time members of our team. Many have been with us for years.",
   },
 ];
+
+/**
+ * Cost comparison calculator. The tier a family lands on is derived from the
+ * hours they set: siblings always fall into Family, a single child stays on
+ * Base while the hours fit inside it, and steps up to Plus beyond that.
+ */
+export type ComparePlan = { name: string; price: number; hours: number; includes: string };
+
+export const compareRate = 150;
+export const compareWeeks = 4;
+
+export const comparePlans: Record<"base" | "plus" | "fam2" | "fam3", ComparePlan> = {
+  base: { name: "Base", price: 49, hours: 6, includes: "1.5 hrs/week foundation support" },
+  plus: {
+    name: "Plus",
+    price: 350,
+    hours: 16,
+    includes: "3 hrs/week + 1 hour 1:1, specialists, exam prep",
+  },
+  fam2: { name: "Family", price: 575, hours: 16, includes: "everything in Plus, for 2 students" },
+  fam3: { name: "Family", price: 750, hours: 16, includes: "everything in Plus, for 3 students" },
+};
+
+export const beyondRows: { label: string; note?: string; tutor: string }[] = [
+  { label: "Teaching hours", tutor: "✓" },
+  {
+    label: "A dedicated Education Manager",
+    note: "One person who knows your child by name, year on year",
+    tutor: "—",
+  },
+  {
+    label: "Learning & career assessments",
+    note: "Strengths, interests, and the right next move",
+    tutor: "—",
+  },
+  {
+    label: "Structured exam preparation",
+    note: "Revision cycles planned around the exam calendar",
+    tutor: "—",
+  },
+  {
+    label: "Specialists on call",
+    note: "Pedagogy experts, psychologists, subject specialists",
+    tutor: "—",
+  },
+  {
+    label: "Wellbeing, sport & enrichment",
+    note: "Discounts and vouchers through our partner network",
+    tutor: "—",
+  },
+  {
+    label: "Monthly reporting & termly review calls",
+    note: "You hear from us before you have to ask",
+    tutor: "—",
+  },
+  {
+    label: "Vetting, safeguarding & oversight",
+    note: "Background checks, logged interactions, peer-reviewed plans",
+    tutor: "You arrange",
+  },
+  {
+    label: "The hours you'd spend finding and coordinating tutors",
+    note: "Chasing, vetting, comparing, patching feedback together",
+    tutor: "Yours",
+  },
+];

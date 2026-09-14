@@ -4,6 +4,7 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { BenefitsPanel } from "@/components/nova/benefits-panel";
 import { CardRail } from "@/components/nova/card-rail";
+import { CompareCost } from "@/components/nova/compare-cost";
 import { CostPanel } from "@/components/nova/cost-panel";
 import { ExperienceMenu } from "@/components/nova/experience-menu";
 import { FaqAccordion } from "@/components/nova/faq-accordion";
@@ -331,6 +332,7 @@ export default function ConciergePage() {
             <h2 className="font-nova-display text-[clamp(24px,2.5vw,34px)] leading-[1.06] font-normal tracking-[-.01em] uppercase">
               Find the right plan for you
             </h2>
+            <CompareCost />
             <p className="inline-flex items-center gap-2 text-[12.5px] text-nova-muted">
               <span className="flex h-5 w-5 items-center justify-center rounded-full bg-coral text-[10px] text-white">
                 ✓
@@ -344,7 +346,8 @@ export default function ConciergePage() {
           <p className="mt-[22px] max-w-[78ch] text-[13.5px] leading-[1.8] text-nova-muted">
             On foundation hours alone, Base costs a fraction of buying the same teaching privately —
             six hours a month runs AED 480–900 at AED 80–150 an hour, and about AED 900 at the AED
-            150 mid-market rate. Curriculums covered: British (IGCSE / A-Level), Cambridge, Edexcel,
+            150 mid-market rate. Use the comparison above to check your own numbers. Curriculums
+            covered: British (IGCSE / A-Level), Cambridge, Edexcel,
             Oxford AQA, CBSE, ICSE, American, AP, IB Diploma, and more on request.
           </p>
         </section>
