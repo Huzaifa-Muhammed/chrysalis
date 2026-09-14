@@ -4,8 +4,17 @@ import Link from "next/link";
 import { DexterAudienceTabs } from "@/components/dexter-audience-tabs";
 import { EdgeRail } from "@/components/edge-rail";
 import { SiteFooter } from "@/components/site-footer";
+import { OnPageNav } from "@/components/on-page-nav";
 import { SiteHeader } from "@/components/site-header";
 import { readMore, surfaces, valueColumns, whyPoints } from "@/content/dexter";
+
+const dexterOnPage = [
+  { href: "#why", label: "Why Dexter exists" },
+  { href: "#who", label: "Who Dexter is for" },
+  { href: "#pricing", label: "What every plan includes" },
+  { href: "#value", label: "What Dexter does" },
+  { href: "#more", label: "Read next" },
+];
 
 export const metadata: Metadata = {
   title: "Dexter — the system designed for 21st century learning",
@@ -24,8 +33,12 @@ function SectionHead({ num }: { num: string }) {
 export default function DexterPage() {
   return (
     <>
-      <EdgeRail prospectusHref="mailto:hello@chrysalis.education?subject=Dexter%20prospectus" />
+      <EdgeRail
+        prospectusHref="mailto:hello@chrysalis.education?subject=Dexter%20enquiry"
+        prospectusLabel="Enquire"
+      />
       <SiteHeader brand="dexter" />
+      <OnPageNav tone="accent" items={dexterOnPage} />
 
       <section className="shell flex flex-col items-center pt-14 pb-[76px] text-center">
         <Link href="/dexter" className="mb-5 inline-flex items-center gap-[11px]">

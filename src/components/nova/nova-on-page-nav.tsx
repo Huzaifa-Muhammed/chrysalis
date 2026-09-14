@@ -12,7 +12,7 @@ export function NovaOnPageNav({ items }: { items: NavItem[] }) {
   const navRef = useRef<HTMLElement>(null);
   const [stuck, setStuck] = useState(false);
   const [height, setHeight] = useState(0);
-  const [active, setActive] = useState(items[0]?.href ?? "");
+  const [active, setActive] = useState("");
 
   useEffect(() => {
     const nav = navRef.current;
@@ -29,7 +29,7 @@ export function NovaOnPageNav({ items }: { items: NavItem[] }) {
     function onScroll() {
       setStuck(window.scrollY > anchorTop);
 
-      let current = items[0]?.href ?? "";
+      let current = "";
       for (const item of items) {
         const target = document.querySelector(item.href);
         if (target instanceof HTMLElement && target.getBoundingClientRect().top <= 140) {

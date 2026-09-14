@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { EdgeRail } from "@/components/edge-rail";
 import { SiteHeader } from "@/components/site-header";
 import { BenefitsPanel } from "@/components/nova/benefits-panel";
 import { CardRail } from "@/components/nova/card-rail";
@@ -12,8 +13,15 @@ import { GetStartedFab } from "@/components/nova/get-started-fab";
 import { JoinModal } from "@/components/nova/join-modal";
 import { NovaOnPageNav } from "@/components/nova/nova-on-page-nav";
 import { PlanTable } from "@/components/nova/plan-table";
-import { conciergeOnPage, drivers, howWeWork, steps, testimonials } from "@/content/concierge";
-import { footerColumns, legalNav } from "@/content/nav";
+import {
+  conciergeOnPage,
+  drivers,
+  howWeWork,
+  novaFooterColumns,
+  steps,
+  testimonials,
+} from "@/content/concierge";
+import { legalNav } from "@/content/nav";
 
 export const metadata: Metadata = {
   title: "EDU Concierge — everything your child needs in one place",
@@ -33,6 +41,12 @@ const cadence = [
   ["Termly", "review call"],
   ["Anytime", "message your manager"],
   ["As needed", "we flag concerns"],
+];
+
+const socials = [
+  { href: "#", label: "Instagram", glyph: "◎" },
+  { href: "#", label: "LinkedIn", glyph: "in" },
+  { href: "#", label: "WhatsApp", glyph: "✆" },
 ];
 
 const stepTone = {
@@ -154,26 +168,26 @@ export default function ConciergePage() {
           </div>
         </div>
 
-        {/* ── Language band ────────────────────────────────────── */}
-        <section className="px-[var(--nova-gut)] pb-14">
-          <div className="flex flex-wrap items-center justify-between gap-8 rounded-[24px] bg-nova-panel px-9 py-8">
+        {/* ── Language band — full-bleed dark strip ─────────────── */}
+        <section className="bg-nova-ink px-[var(--nova-gut)] py-[34px] text-white">
+          <div className="mx-auto grid max-w-[var(--nova-max)] grid-cols-[minmax(0,1fr)_auto] items-center gap-[34px] max-[860px]:grid-cols-1 max-[860px]:gap-5">
             <div>
-              <h2 className="font-nova-display text-[clamp(20px,2vw,26px)] leading-[1.1] font-normal tracking-[-.01em] uppercase">
+              <h2 className="font-nova-display text-2xl leading-[1.06] font-normal tracking-[-.01em] text-white uppercase max-[860px]:text-xl">
                 Say hello to us — in your language.
               </h2>
-              <p className="mt-2.5 max-w-[52ch] text-[13.5px] leading-[1.75] text-nova-muted">
+              <p className="mt-[9px] max-w-[56ch] text-sm leading-[1.7] text-white/75">
                 Our team speaks English, French, Arabic and Urdu, so you can talk about your child
                 in the language you think in.
               </p>
             </div>
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-5">
               <div className="flex flex-wrap gap-2">
                 {languages.map((language) => (
                   <span
                     key={language.label}
                     lang={language.lang}
                     dir={language.dir}
-                    className="rounded-full bg-white px-[15px] py-2 text-[13px] whitespace-nowrap"
+                    className="rounded-full border border-white/30 px-[15px] py-2 text-[13.5px] whitespace-nowrap text-white"
                   >
                     {language.label}
                   </span>
@@ -181,9 +195,9 @@ export default function ConciergePage() {
               </div>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2.5 rounded-full bg-white py-2.5 pr-5 pl-2.5 font-nova-display text-[13px] font-semibold transition-colors hover:bg-coral hover:text-white"
+                className="group inline-flex items-center gap-3 rounded-full border border-white bg-white py-[7px] pr-6 pl-[7px] font-nova-display text-sm font-medium text-nova-ink transition-colors hover:border-coral hover:bg-coral hover:text-white"
               >
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-coral text-[13px] text-white">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-coral text-[15px] text-white group-hover:bg-white/25">
                   ↗
                 </span>
                 <span>Say hello</span>
@@ -193,7 +207,7 @@ export default function ConciergePage() {
         </section>
 
         {/* ── What is EC ───────────────────────────────────────── */}
-        <section id="included" className="px-[var(--nova-gut)] pb-14">
+        <section id="included" className="px-[var(--nova-gut)] py-14">
           <div className="grid grid-cols-[minmax(0,.78fr)_minmax(0,1.22fr)] items-stretch gap-[22px] max-[1000px]:grid-cols-1">
             <div className="rounded-[24px] bg-white p-9 max-[680px]:p-6">
               <div className="flex items-start justify-between gap-[18px]">
@@ -202,16 +216,16 @@ export default function ConciergePage() {
                 </h2>
                 <span className="flex-none text-xl">↗</span>
               </div>
-              <p className="mt-4 font-nova-display text-[17px] leading-[1.4] text-nova-ink-2">
+              <p className="mt-4 max-w-[34ch] text-[15.5px] leading-[1.55] text-nova-ink">
                 Think of it as a relationship manager for your child&rsquo;s education.
               </p>
-              <div className="mt-5 overflow-hidden rounded-[18px]">
+              <div className="relative mt-[22px] h-[190px] overflow-hidden rounded-[18px] bg-nova-panel">
                 <Image
                   src="/img/what-is-ec.jpg"
                   alt="An Education Manager at her desk in a Chrysalis Education office"
-                  width={1100}
-                  height={632}
-                  className="h-auto w-full"
+                  fill
+                  sizes="(max-width: 1000px) 100vw, 34vw"
+                  className="object-cover object-[50%_34%]"
                 />
               </div>
               <p className="mt-[22px] text-[13.5px] leading-[1.75] text-nova-muted">
@@ -225,20 +239,20 @@ export default function ConciergePage() {
         </section>
 
         {/* ── The problem ──────────────────────────────────────── */}
-        <section id="problem" className="bg-nova-band px-[var(--nova-gut)] py-14">
+        <section id="problem" className="bg-nova-band px-[var(--nova-gut)] py-[76px]">
           <span className="inline-flex items-center gap-[7px] self-start rounded-full bg-coral px-4 py-2 font-nova-display text-xs font-medium tracking-[1.4px] text-white uppercase">
             The problem
           </span>
-          <div className="mt-7 grid grid-cols-4 gap-[18px] max-[1000px]:grid-cols-2 max-[680px]:grid-cols-1">
+          <div className="mt-[38px] grid grid-cols-4 gap-4 max-[1000px]:grid-cols-2 max-[680px]:grid-cols-1">
             {drivers.map((driver) => (
-              <div key={driver.n} className="rounded-[18px] bg-white p-6">
-                <div className="font-nova-display text-[11px] tracking-[2.2px] text-nova-muted-2">
+              <div key={driver.n} className="border-t-2 border-nova-line pt-3.5">
+                <div className="font-nova-display text-[11px] tracking-[1.6px] text-nova-muted-2">
                   {driver.n}
                 </div>
-                <h3 className="mt-3 font-nova-display text-[18px] font-medium tracking-[-.01em]">
+                <h3 className="mt-1.5 mb-[5px] font-nova-display text-[14.5px] font-medium tracking-[-.01em]">
                   {driver.title}
                 </h3>
-                <p className="mt-2.5 text-[13px] leading-[1.7] text-nova-muted">{driver.body}</p>
+                <p className="text-xs leading-[1.6] text-nova-muted">{driver.body}</p>
               </div>
             ))}
           </div>
@@ -246,38 +260,41 @@ export default function ConciergePage() {
         </section>
 
         {/* ── How we work ──────────────────────────────────────── */}
-        <section id="trust" className="px-[var(--nova-gut)] py-14">
+        <section id="trust" className="bg-nova-band px-[var(--nova-gut)] py-[76px]">
           <CardRail title="How we work" lede="The people around your child, and the rules they work to.">
             {howWeWork.map((card) => (
               <div
                 key={card.title}
-                className="flex w-[320px] flex-none snap-start flex-col rounded-[18px] bg-white p-7 max-[680px]:w-[84vw]"
+                className="flex w-[286px] flex-none snap-start flex-col rounded-[24px] bg-white px-[26px] py-7 transition-shadow hover:shadow-[0_10px_28px_rgba(0,0,0,.06)] max-[680px]:w-[84vw]"
               >
-                <span className="font-nova-display text-[11px] tracking-[2.2px] text-nova-muted-2 uppercase">
+                <span className="font-nova-display text-[10.5px] tracking-[1.8px] text-coral uppercase">
                   {card.k}
                 </span>
-                <h3 className="mt-3 font-nova-display text-[18px] font-medium tracking-[-.01em]">
+                <h3 className="mt-2.5 font-nova-display text-[17px] leading-[1.3] font-medium tracking-[-.01em]">
                   {card.title}
                 </h3>
-                <p className="mt-2.5 text-[13px] leading-[1.7] text-nova-muted">{card.body}</p>
+                <p className="mt-2.5 text-[13.5px] leading-[1.72] text-nova-muted">{card.body}</p>
               </div>
             ))}
           </CardRail>
 
-          <div className="mt-8 flex flex-wrap gap-2.5">
+          <div className="mt-[22px] flex flex-wrap gap-2 border-t border-nova-line pt-[18px]">
             {cadence.map(([when, what]) => (
               <span
                 key={when}
-                className="rounded-full border border-nova-line bg-white px-4 py-2.5 text-[12.5px] text-nova-muted"
+                className="rounded-full bg-nova-band px-3.5 py-2 text-[12.5px] text-nova-muted"
               >
-                <b className="font-nova-display font-semibold text-nova-ink">{when}</b> {what}
+                <b className="font-nova-display text-[10.5px] font-semibold tracking-[1.4px] text-nova-ink uppercase">
+                  {when}
+                </b>{" "}
+                {what}
               </span>
             ))}
           </div>
         </section>
 
         {/* ── Testimonials ─────────────────────────────────────── */}
-        <section id="voices" className="bg-nova-band px-[var(--nova-gut)] py-14">
+        <section id="voices" className="bg-nova-band px-[var(--nova-gut)] py-[76px]">
           <CardRail
             title="What families say"
             lede="Real words from parents and students in the programme."
@@ -286,20 +303,20 @@ export default function ConciergePage() {
             {testimonials.map((item) => (
               <figure
                 key={item.name}
-                className="m-0 flex w-[360px] flex-none snap-start flex-col rounded-[18px] bg-white p-7 max-[680px]:w-[84vw]"
+                className="m-0 flex w-[300px] flex-none snap-start flex-col rounded-[24px] bg-white px-7 pt-[30px] pb-[26px] max-[680px]:w-[84vw]"
               >
-                <span className="font-nova-display text-[34px] leading-none text-coral">“</span>
-                <blockquote className="m-0 mt-2 flex-1 text-[13.5px] leading-[1.8] text-nova-ink-2">
+                <span className="font-nova-display text-[40px] leading-[.7] text-coral">“</span>
+                <blockquote className="m-0 mt-3.5 flex-1 text-[14.5px] leading-[1.75] text-nova-ink-2">
                   {item.quote}
                 </blockquote>
-                <figcaption className="mt-5 flex items-center gap-3">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-nova-panel font-nova-display text-[12px] font-semibold">
+                <figcaption className="mt-4 flex items-center gap-3 border-t border-nova-line pt-4">
+                  <span className="flex h-[38px] w-[38px] flex-none items-center justify-center rounded-full bg-nova-band font-nova-display text-[13px] font-semibold">
                     {item.initials}
                   </span>
-                  <span className="font-nova-display text-[13.5px] font-medium">
+                  <span className="font-nova-display text-sm leading-[1.3] font-semibold">
                     {item.name}
                     {item.place ? (
-                      <small className="block text-[11.5px] font-normal text-nova-muted">
+                      <small className="mt-0.5 block font-nova-body text-[11.5px] font-normal text-nova-muted">
                         {item.place}
                       </small>
                     ) : null}
@@ -321,7 +338,7 @@ export default function ConciergePage() {
         </section>
 
         {/* ── Plans ────────────────────────────────────────────── */}
-        <section id="plans" className="px-[var(--nova-gut)] py-14">
+        <section id="plans" className="px-[var(--nova-gut)] py-[76px]">
           <div className="mb-8 flex flex-col items-center gap-5 text-center">
             <h2 className="max-w-[22ch] font-nova-display text-[clamp(24px,2.5vw,34px)] leading-[1.06] font-normal tracking-[-.01em] uppercase">
               Find the right plan for you
@@ -347,7 +364,7 @@ export default function ConciergePage() {
         </section>
 
         {/* ── Getting started ──────────────────────────────────── */}
-        <section id="how" className="bg-nova-band px-[var(--nova-gut)] py-14">
+        <section id="how" className="bg-nova-band px-[var(--nova-gut)] py-[76px]">
           <CardRail
             title="Getting started"
             lede="Six steps, and we do most of them. From signing up to your first learning track, the work is on our side."
@@ -356,12 +373,12 @@ export default function ConciergePage() {
             {steps.map((step) => (
               <div
                 key={step.n}
-                className="flex w-[290px] flex-none snap-start flex-col rounded-[18px] bg-white p-7 max-[680px]:w-[84vw]"
+                className="flex w-[258px] flex-none snap-start flex-col rounded-[24px] bg-white px-6 pt-[26px] pb-[22px] transition-shadow hover:shadow-[0_10px_28px_rgba(0,0,0,.06)] max-[680px]:w-[84vw]"
               >
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-coral font-nova-display text-[13px] font-semibold text-white">
+                <span className="flex h-[38px] w-[38px] items-center justify-center rounded-full bg-coral font-nova-display text-[15px] font-semibold text-white">
                   {step.n}
                 </span>
-                <h3 className="mt-3.5 font-nova-display text-[18px] font-medium tracking-[-.01em]">
+                <h3 className="mt-3.5 font-nova-display text-[17px] font-medium tracking-[-.01em]">
                   {step.title}
                 </h3>
                 <p className="mt-2.5 flex-1 text-[13px] leading-[1.7] text-nova-muted">
@@ -402,6 +419,7 @@ export default function ConciergePage() {
         <NovaFooter />
       </div>
 
+      <EdgeRail prospectusHref="mailto:concierge@chrysalis.education?subject=Prospectus%20request" />
       <GetStartedFab />
       <JoinModal />
     </div>
@@ -455,35 +473,45 @@ function GlassPill({
 /** Nova carries its own footer — same information, the coral system's type. */
 function NovaFooter() {
   return (
-    <footer className="bg-nova-panel px-[var(--nova-gut)] pt-14 pb-8">
-      <div className="grid grid-cols-[minmax(0,1.3fr)_repeat(3,minmax(0,auto))] items-start gap-14 max-[1000px]:grid-cols-2 max-[680px]:grid-cols-1 max-[680px]:gap-8">
-        <div className="flex max-w-[340px] flex-col gap-5">
+    <footer className="border-t border-nova-line px-[var(--nova-gut)] pt-[52px] pb-9">
+      <div className="grid grid-cols-[minmax(0,1.5fr)_repeat(3,minmax(0,auto))] items-start gap-10 max-[1000px]:grid-cols-2 max-[680px]:grid-cols-1 max-[680px]:gap-8">
+        <div className="flex max-w-[340px] flex-col">
           <Link href="/">
             <Image
               src="/img/chrysalis-logo.png"
               alt="Chrysalis Education"
               width={720}
               height={360}
-              className="h-[46px] w-auto max-w-[240px] object-contain object-left"
+              className="h-8 w-auto max-w-[180px] object-contain object-left"
             />
           </Link>
-          <p className="text-[13px] leading-[1.75] text-nova-muted">
+          <p className="mt-3.5 max-w-[32ch] text-[12.5px] leading-[1.7] text-nova-muted">
             An online education concierge service. A dedicated Education Manager, live lessons when
             needed, transparent pricing — all built around your child.
           </p>
+          <div className="mt-[18px] flex gap-[9px]">
+            {socials.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                aria-label={social.label}
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-nova-line text-xs transition-colors hover:border-nova-ink hover:text-coral"
+              >
+                {social.glyph}
+              </a>
+            ))}
+          </div>
         </div>
 
-        {footerColumns.map((column) => (
-          <div key={column.heading} className="flex flex-col gap-3.5">
-            <h4 className="font-nova-display text-[12.5px] font-semibold tracking-[.4px]">
-              {column.heading}
-            </h4>
-            <div className="flex flex-col gap-2.5">
+        {novaFooterColumns.map((column) => (
+          <div key={column.heading}>
+            <h4 className="mb-3 font-nova-display text-[12.5px] font-semibold">{column.heading}</h4>
+            <div className="flex flex-col gap-[9px]">
               {column.links.map((link) => (
                 <Link
                   key={`${link.href}-${link.label}`}
                   href={link.href}
-                  className="text-[13px] text-nova-muted transition-colors hover:text-coral"
+                  className="text-[12.5px] text-nova-muted transition-colors hover:text-coral"
                 >
                   {link.label}
                 </Link>
@@ -493,9 +521,9 @@ function NovaFooter() {
         ))}
       </div>
 
-      <div className="mt-10 flex flex-wrap items-center justify-between gap-3.5 border-t border-nova-line pt-5 text-[12.5px] text-nova-muted-2">
+      <div className="mt-[38px] flex flex-wrap items-center justify-between gap-3.5 border-t border-nova-line pt-5 text-[12.5px] text-nova-muted-2">
         <div>EDU Concierge is a Chrysalis Education product. © 2026.</div>
-        <nav aria-label="Legal" className="flex flex-wrap gap-[22px]">
+        <nav aria-label="Legal" className="flex flex-wrap gap-5">
           {legalNav.slice(0, 2).map((link) => (
             <Link key={link.href} href={link.href} className="transition-colors hover:text-coral">
               {link.label}

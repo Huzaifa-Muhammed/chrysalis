@@ -39,7 +39,7 @@ export function CardRail({
     const track = trackRef.current;
     if (!track) return;
     const card = track.firstElementChild as HTMLElement | null;
-    const step = card ? card.offsetWidth + 18 : track.clientWidth * 0.8;
+    const step = card ? card.offsetWidth + 16 : track.clientWidth * 0.8;
     track.scrollBy({ left: step * direction, behavior: "smooth" });
   }
 
@@ -51,7 +51,7 @@ export function CardRail({
             {title}
           </h2>
           {lede ? (
-            <p className="mt-3 max-w-[42ch] text-[13.5px] leading-[1.75] text-nova-muted">{lede}</p>
+            <p className="mt-3.5 max-w-[52ch] text-[13.5px] leading-[1.75] text-nova-muted">{lede}</p>
           ) : null}
         </div>
         <div className="flex gap-2">
@@ -79,16 +79,16 @@ export function CardRail({
       <div
         ref={trackRef}
         onScroll={measure}
-        className="mt-6 flex snap-x snap-mandatory gap-[18px] overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="mt-[34px] flex snap-x snap-mandatory gap-4 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {children}
       </div>
 
       <div
         data-fab-stand-down={footer ? "" : undefined}
-        className="mt-5 flex flex-wrap items-center justify-between gap-5"
+        className="mt-[26px] flex flex-wrap items-center gap-6"
       >
-        <span className="block h-[3px] w-[min(320px,100%)] flex-1 overflow-hidden rounded-full bg-nova-line">
+        <span className="block h-[3px] min-w-[120px] flex-1 overflow-hidden rounded-full bg-nova-line">
           <i
             className="block h-full rounded-full bg-coral transition-[width] duration-200"
             style={{ width: `${Math.max(progress * 100, 8)}%` }}

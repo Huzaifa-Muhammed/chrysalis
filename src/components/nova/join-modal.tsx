@@ -155,12 +155,12 @@ export function JoinModal() {
           </div>
         ) : (
           <>
-            <span className="inline-flex items-center rounded-full bg-coral-lt px-3 py-1.5 font-nova-display text-[10.5px] tracking-[1.6px] text-coral uppercase">
+            <span className="font-nova-display text-[11.5px] font-medium tracking-[2.2px] text-nova-muted-2 uppercase">
               Get started
             </span>
             <h2
               id="join-title"
-              className="mt-3 font-nova-display text-[26px] leading-[1.1] font-normal tracking-[-.01em] uppercase"
+              className="mt-3 font-nova-display text-[26px] leading-[1.06] font-normal tracking-[-.01em] uppercase"
             >
               Tell us about your child
             </h2>

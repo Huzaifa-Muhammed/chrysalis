@@ -5,11 +5,22 @@ import type { NavItem } from "@/content/nav";
 
 /** Sticky in-page nav. Pins to the top on scroll and highlights the section
  *  currently in view, inserting a spacer so the page doesn't jump when it pins. */
-export function OnPageNav({ items }: { items: NavItem[] }) {
+const tones = {
+  plum: "border-plum text-plum",
+  accent: "border-accent text-accent",
+};
+
+export function OnPageNav({
+  items,
+  tone = "plum",
+}: {
+  items: NavItem[];
+  tone?: keyof typeof tones;
+}) {
   const navRef = useRef<HTMLElement>(null);
   const [stuck, setStuck] = useState(false);
   const [height, setHeight] = useState(0);
-  const [active, setActive] = useState(items[0]?.href ?? "");
+  const [active, setActive] = useState("");
 
   useEffect(() => {
     const nav = navRef.current;
@@ -22,7 +33,7 @@ export function OnPageNav({ items }: { items: NavItem[] }) {
       setStuck(window.scrollY > anchorTop);
 
       // The section whose top has most recently passed the nav wins.
-      let current = items[0]?.href ?? "";
+      let current = "";
       for (const item of items) {
         const target = document.querySelector(item.href.replace(/^.*#/, "#"));
         if (target instanceof HTMLElement && target.getBoundingClientRect().top <= 90) {
@@ -57,8 +68,8 @@ export function OnPageNav({ items }: { items: NavItem[] }) {
                 href={item.href}
                 className={`border-b-2 py-[18px] text-sm whitespace-nowrap transition-colors max-[860px]:py-[15px] max-[860px]:text-[13.5px] ${
                   active === item.href
-                    ? "border-plum text-plum"
-                    : "border-transparent text-ink-soft hover:text-plum"
+                    ? tones[tone]
+                    : `border-transparent text-ink-soft ${tone === "plum" ? "hover:text-plum" : "hover:text-accent"}`
                 }`}
               >
                 {item.label}

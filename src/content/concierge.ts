@@ -295,7 +295,7 @@ export const plans: Plan[] = [
 
 /** Family pricing is per household and depends on how many children are covered. */
 export const familyPricing: Record<2 | 3, { price: string; per: string }> = {
-  2: { price: "AED 575", per: "per month · 2 students · AED 288 each" },
+  2: { price: "AED 575", per: "per month · 2 students" },
   3: { price: "AED 750", per: "per month · 3 students · AED 250 each" },
 };
 
@@ -313,7 +313,12 @@ export const featureGroups: { group: string; rows: FeatureRow[] }[] = [
       {
         label: "Live classes with subject-expert teachers",
         note: "Free members join scheduled classes when a seat is open",
-        values: ["2 hrs/month", "1.5 hrs/week", "3 hrs/week + 1 hr 1:1", "3 hrs/week + 1 hr 1:1 each"],
+        values: [
+          "2 hrs/month",
+          "1.5 hrs/week",
+          "3 hrs/week\n+ 1 hr 1:1",
+          "3 hrs/week\n+ 1 hr 1:1 each",
+        ],
         key: true,
       },
       { label: "Guaranteed place in your classes", values: ["—", "✓", "✓", "✓"], key: true },
@@ -520,6 +525,37 @@ export const beyondRows: { label: string; note?: string; tutor: string }[] = [
     label: "The hours you'd spend finding and coordinating tutors",
     note: "Chasing, vetting, comparing, patching feedback together",
     tutor: "Yours",
+  },
+];
+
+/** The concierge footer carries its own links, not the parent-brand set. */
+export const novaFooterColumns: { heading: string; links: { href: string; label: string }[] }[] = [
+  {
+    heading: "Programmes",
+    links: [
+      { href: "/concierge", label: "EDU Concierge" },
+      { href: "/spark", label: "Spark" },
+      { href: "/dexter", label: "Dexter" },
+      { href: "/school", label: "Chrysalis School" },
+    ],
+  },
+  {
+    heading: "Company",
+    links: [
+      { href: "/about", label: "About us" },
+      { href: "/why", label: "Our approach" },
+      { href: "/careers", label: "Careers" },
+      { href: "/contact", label: "Contact us" },
+    ],
+  },
+  {
+    heading: "Support",
+    links: [
+      { href: "/contact", label: "Speak to us" },
+      { href: "/support", label: "FAQs" },
+      { href: "/support", label: "Help centre" },
+      { href: "/parent-resources", label: "For parents" },
+    ],
   },
 ];
 

@@ -44,16 +44,21 @@ export function BenefitsPanel() {
 
       {tab === "overview" ? (
         <div>
-          <p className="font-nova-display text-[19px] leading-[1.3] text-nova-ink-2">
+          <p className="mb-[26px] border-l-[3px] border-coral pl-4 font-nova-display text-[19px] leading-[1.42] font-medium tracking-[-.01em] text-nova-ink">
             A child should not have to navigate their education alone — and neither should their
             parents.
           </p>
-          {overviewBlocks.map((block) => (
-            <div key={block.k} className="mt-6 border-t border-nova-line pt-5">
-              <span className="font-nova-display text-[11.5px] font-medium tracking-[2.2px] text-nova-muted-2 uppercase">
+          {overviewBlocks.map((block, index) => (
+            <div
+              key={block.k}
+              className={
+                index === 0 ? "pb-4" : "border-t border-nova-line py-4"
+              }
+            >
+              <span className="mb-[9px] block font-nova-display text-[10.5px] tracking-[1.8px] text-coral uppercase">
                 {block.k}
               </span>
-              <p className="mt-2.5 text-[13.5px] leading-[1.8] text-nova-muted">{block.body}</p>
+              <p className="text-[13.5px] leading-[1.78] text-nova-ink-2">{block.body}</p>
             </div>
           ))}
         </div>
@@ -90,7 +95,7 @@ export function BenefitsPanel() {
                       ))}
                     </ul>
                   ) : (
-                    <p className="mb-[18px] text-[13.5px] leading-[1.8] text-nova-muted">{item.a}</p>
+                    <p className="max-w-[54ch] pb-5 text-[13px] leading-[1.75] text-nova-muted">{item.a}</p>
                   )
                 ) : null}
               </div>
