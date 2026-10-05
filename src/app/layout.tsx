@@ -7,6 +7,7 @@ import {
   Outfit,
   Plus_Jakarta_Sans,
 } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -68,6 +69,7 @@ export default function RootLayout({
         className={`${archivo.variable} ${plexSans.variable} ${plexMono.variable} ${instrument.variable} ${outfit.variable} ${jakarta.variable} antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
