@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import {
   Archivo,
+  Fraunces,
   IBM_Plex_Mono,
   IBM_Plex_Sans,
+  Inter,
   Instrument_Serif,
+  JetBrains_Mono,
   Outfit,
   Plus_Jakarta_Sans,
 } from "next/font/google";
@@ -13,7 +16,7 @@ import "./globals.css";
 const archivo = Archivo({
   variable: "--font-archivo",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 const plexSans = IBM_Plex_Sans({
   variable: "--font-plex-sans",
@@ -42,6 +45,27 @@ const jakarta = Plus_Jakarta_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
+// Used only by a few ported pages, so they load on demand rather than preload.
+const jetbrains = JetBrains_Mono({
+  variable: "--font-jetbrains",
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  preload: false,
+});
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  preload: false,
+});
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
+  preload: false,
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://chrysalis.education"),
   title: {
@@ -66,7 +90,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${archivo.variable} ${plexSans.variable} ${plexMono.variable} ${instrument.variable} ${outfit.variable} ${jakarta.variable} antialiased`}
+        className={`${archivo.variable} ${plexSans.variable} ${plexMono.variable} ${instrument.variable} ${outfit.variable} ${jakarta.variable} ${jetbrains.variable} ${inter.variable} ${fraunces.variable} antialiased`}
       >
         {children}
         <Analytics />

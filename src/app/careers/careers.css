@@ -1,4 +1,5 @@
 /* Ported verbatim from careers.html, scoped to .pg-careers. */
+@layer pages {
 .pg-careers{
   --ink:#14141a;
   --ink-2:#1a1a1e;
@@ -37,7 +38,7 @@
 .pg-careers{
   margin:0;background:var(--paper);color:var(--ink);
   font-family:var(--body);font-size:15px;line-height:1.6;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;overflow-x:clip;
 }
 .pg-careers h1,
 .pg-careers h2,
@@ -143,4 +144,6 @@
 .pg-careers .grid3{grid-template-columns:1fr}
 .pg-careers .closing{padding:38px 26px}
 .pg-careers .btn{width:100%;justify-content:center}
+}
+.pg-careers section[id]{scroll-margin-top:74px}
 }

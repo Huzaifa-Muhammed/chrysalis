@@ -1,3 +1,8 @@
+/* Ported design pages put their CSS in `pages`, which sits above the Tailwind
+   base/components but below utilities, so shared components (header, footer)
+   keep their own utility styling when rendered inside a page wrapper. */
+@layer theme, base, components, pages, utilities;
+
 @import "tailwindcss";
 
 /* ──────────────────────────────────────────────────────────────

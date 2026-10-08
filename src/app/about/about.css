@@ -1,4 +1,5 @@
 /* Ported verbatim from about.html, scoped to .pg-about. */
+@layer pages {
 .pg-about{
   --ink:#14141a;
   --ink-2:#1a1a1e;
@@ -37,7 +38,7 @@
 .pg-about{
   margin:0;background:var(--paper);color:var(--ink);
   font-family:var(--body);font-size:15px;line-height:1.6;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;overflow-x:clip;
 }
 .pg-about h1,
 .pg-about h2,
@@ -150,4 +151,6 @@
 .pg-about .grid3{grid-template-columns:1fr}
 .pg-about .closing{padding:38px 26px}
 .pg-about .btn{width:100%;justify-content:center}
+}
+.pg-about section[id]{scroll-margin-top:74px}
 }

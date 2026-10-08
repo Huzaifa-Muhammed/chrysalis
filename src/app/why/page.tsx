@@ -366,9 +366,8 @@ export default function WhyPage() {
           </section>
         </div>
         <LegacyBehaviors onPage />
+        <SiteFooter variant="spread" />
       </div>
-
-      <SiteFooter />
     </>
   );
 }

@@ -116,9 +116,8 @@ export default function SupportPage() {
           </section>
         </div>
         <LegacyBehaviors />
+        <SiteFooter variant="spread" />
       </div>
-
-      <SiteFooter />
     </>
   );
 }

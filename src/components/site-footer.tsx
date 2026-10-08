@@ -3,10 +3,17 @@ import Link from "next/link";
 import { footerColumns, legalNav } from "@/content/nav";
 import { SocialLinks } from "./social-links";
 
-export function SiteFooter() {
+/** `spread` is the wider four-column footer with stacked legal links that some
+ *  of the design pages (admission, curriculum, library, ...) carry. */
+export function SiteFooter({ variant = "default" }: { variant?: "default" | "spread" }) {
+  const spread = variant === "spread";
   return (
     <footer className="relative z-10 border-t border-line bg-white">
-      <div className="mx-auto grid max-w-[var(--shell)] grid-cols-[minmax(0,1.3fr)_repeat(3,minmax(0,auto))] items-start gap-14 px-[var(--gutter)] pt-16 pb-[34px] max-[720px]:grid-cols-1 max-[720px]:gap-8 max-[720px]:pt-12">
+      <div className={`mx-auto grid max-w-[var(--shell)] items-start px-[var(--gutter)] pt-16 pb-[34px] ${
+          spread
+            ? "grid-cols-[1.6fr_1fr_1fr_1fr] gap-10 max-[820px]:grid-cols-2 max-[820px]:gap-7 max-[520px]:grid-cols-1"
+            : "grid-cols-[minmax(0,1.3fr)_repeat(3,minmax(0,auto))] gap-14 max-[720px]:grid-cols-1 max-[720px]:gap-8 max-[720px]:pt-12"
+        }`}>
         <div className="flex max-w-[340px] flex-col gap-5">
           <Link href="/">
             <Image
@@ -45,7 +52,11 @@ export function SiteFooter() {
       </div>
 
       <div className="mx-auto max-w-[var(--shell)] px-[var(--gutter)] pb-[34px]">
-        <div className="flex flex-wrap items-center justify-between gap-[18px] border-t border-line-2 pt-6 text-[12.5px] text-muted-2 max-[720px]:flex-col max-[720px]:items-start max-[720px]:gap-3.5">
+        <div className={`flex border-t border-line-2 pt-6 text-[12.5px] text-muted-2 ${
+            spread
+              ? "flex-col items-start gap-3.5"
+              : "flex-wrap items-center justify-between gap-[18px] max-[720px]:flex-col max-[720px]:items-start max-[720px]:gap-3.5"
+          }`}>
           <div>© 2026 Chrysalis Education. All rights reserved.</div>
           <nav aria-label="Legal" className="flex flex-wrap gap-[26px]">
             {legalNav.map((link) => (
