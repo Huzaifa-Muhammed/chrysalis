@@ -295,21 +295,21 @@ export const valueColumns = [
 
 export const readMore = [
   {
-    href: "/dexter/vs",
+    href: "/dexter/dexter-vs",
     image: "/img/dexter-reasons.jpg",
     alt: "The Dexter mark rendered in colour on a grid",
     title: "10 reasons you can't avoid Dexter",
     tag: "Comparison",
   },
   {
-    href: "/dexter/a-day",
+    href: "/dexter/a-day-with-dexter",
     image: "/img/dexter-day.jpg",
     alt: "A teacher leaving school at the end of the day",
     title: "A day with vs. without Dexter",
     tag: "Teacher's day",
   },
   {
-    href: "/dexter/behind",
+    href: "/dexter/behind-dexter",
     image: "/img/dexter-team.jpg",
     alt: "The Dexter team around a table",
     title: "Who is behind Dexter",

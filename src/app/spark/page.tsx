@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 /** Courses start January 2027 and prices are deliberately not shown on the hub. */
 const courses = [
   {
-    href: "/spark/ai-foundation",
+    href: "/spark-foundation",
     tint: "#F4B740",
     initials: "AI",
     tag: "Ages 8–18",
@@ -24,7 +24,7 @@ const courses = [
     note: "Free intro class first",
   },
   {
-    href: "/spark/ai-advanced",
+    href: "/spark-advanced",
     tint: "#2F7D57",
     initials: "AI+",
     tag: "Next level",
@@ -34,7 +34,7 @@ const courses = [
     note: "Mentored by an AI CTO",
   },
   {
-    href: "/spark/medical-foundation",
+    href: "/spark-medical-foundation",
     tint: "#C9557B",
     initials: "MD",
     tag: "For doctors",
@@ -44,7 +44,7 @@ const courses = [
     note: "Understand, use and build safely",
   },
   {
-    href: "/spark/medical-advanced",
+    href: "/spark-medical-advanced",
     tint: "#3E5FA8",
     initials: "MD+",
     tag: "For doctors",

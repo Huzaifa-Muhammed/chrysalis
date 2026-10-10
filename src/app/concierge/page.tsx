@@ -361,6 +361,13 @@ export default function ConciergePage() {
             covered: British (IGCSE / A-Level), Cambridge, Edexcel,
             Oxford AQA, CBSE, ICSE, American, AP, IB Diploma, and more on request.
           </p>
+
+          <Link
+            href="/concierge-detail"
+            className="mt-4 inline-block text-[13.5px] font-medium text-coral underline underline-offset-4"
+          >
+            See full plan details →
+          </Link>
         </section>
 
         {/* ── Getting started ──────────────────────────────────── */}
