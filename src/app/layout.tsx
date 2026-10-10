@@ -67,7 +67,7 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://chrysalis.education"),
+  metadataBase: new URL("https://www.chrysedu.com"),
   title: {
     default: "Chrysalis Education — Education built around you",
     template: "%s — Chrysalis Education",
