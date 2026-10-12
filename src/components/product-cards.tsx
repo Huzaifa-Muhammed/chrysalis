@@ -44,7 +44,7 @@ export function ProductCards() {
                     onClick={() => setTourOpen(true)}
                     className="relative z-[2] cursor-pointer border-0 bg-transparent p-0 text-[13px] text-white/[.86] underline underline-offset-4 transition-colors hover:text-amber"
                   >
-                    Take a 30 sec tour
+                    Take the 30-second tour
                   </button>
                 ) : (
                   <span className="text-[13px] text-white/[.72]">

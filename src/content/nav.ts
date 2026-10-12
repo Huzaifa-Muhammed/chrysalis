@@ -51,5 +51,5 @@ export const footerColumns: { heading: string; links: NavItem[] }[] = [
 export const legalNav: NavItem[] = [
   { href: "/privacy", label: "Privacy policy" },
   { href: "/terms", label: "Terms of service" },
-  { href: "/cookies", label: "Cookie settings" },
+  { href: "/cookies", label: "Cookies" },
 ];
