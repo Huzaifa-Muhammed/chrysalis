@@ -23,7 +23,7 @@ export default function SparkFoundationPage() {
   return (
     <>
       <div className="pg-spark-foundation">
-        <EdgeRail />
+        <EdgeRail showProspectus={false} />
         <SiteHeader />
       </div>
       <OnPageNav items={onPage} />

@@ -39,7 +39,7 @@ const contacts = [
 export default function ContactPage() {
   return (
     <>
-      <EdgeRail />
+      <EdgeRail showProspectus={false} />
       <SiteHeader />
 
       <section className="bg-plum pt-16 pb-[150px] text-center text-white max-[680px]:pt-12 max-[680px]:pb-[130px]">
@@ -62,9 +62,8 @@ export default function ContactPage() {
           <div>
             <h2 className="font-display text-xl font-semibold tracking-[-.01em]">Talk to us now</h2>
             <div className="mt-[18px] flex flex-col gap-3">
-              {/* WhatsApp number is a placeholder in the source build. */}
               <a
-                href="https://wa.me/9710000000000?text=Hi%20Chrysalis%2C%20I%27d%20like%20to%20ask%20about%20"
+                href="https://wa.me/971542635559?text=Hi%20Chrysalis%2C%20I%27d%20like%20to%20ask%20about%20"
                 className="flex w-full cursor-pointer items-center gap-3.5 rounded-xl border border-line bg-white px-[18px] py-[15px] text-left transition-[border-color,background,transform] duration-200 hover:-translate-y-px hover:border-plum hover:bg-cream"
               >
                 <span className="flex h-[38px] w-[38px] flex-none items-center justify-center rounded-full bg-[#25D366] text-base text-white">

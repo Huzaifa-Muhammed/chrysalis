@@ -426,7 +426,7 @@ export default function ConciergePage() {
         <NovaFooter />
       </div>
 
-      <EdgeRail prospectusHref="mailto:concierge@chrysalis.education?subject=Prospectus%20request" />
+      <EdgeRail showProspectus={false} />
       <GetStartedFab />
       <JoinModal />
     </div>

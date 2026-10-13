@@ -16,7 +16,7 @@ export default function SparkAiProgramPage() {
   return (
     <>
       <div className="pg-spark-ai-program">
-        <EdgeRail />
+        <EdgeRail showProspectus={false} />
         <SiteHeader />
       </div>
 

@@ -1588,10 +1588,10 @@ export default function ConciergeDetailPage() {
                 <h4>More</h4>
                 <ul>
                   <li>
-                    <a href="#">Terms &amp; conditions</a>
+                    <Link href="/terms">Terms &amp; conditions</Link>
                   </li>
                   <li>
-                    <a href="#">Privacy</a>
+                    <Link href="/privacy">Privacy</Link>
                   </li>
                   <li>
                     <a href="mailto:concierge@chrysalis.education">Contact us</a>

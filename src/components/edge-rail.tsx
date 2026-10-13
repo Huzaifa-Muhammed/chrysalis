@@ -4,9 +4,11 @@ import Link from "next/link";
 export function EdgeRail({
   prospectusHref = "mailto:hello@chrysalis.education?subject=Prospectus%20request",
   prospectusLabel = "Prospectus",
+  showProspectus = true,
 }: {
   prospectusHref?: string;
   prospectusLabel?: string;
+  showProspectus?: boolean;
 }) {
   return (
     <div className="fixed top-[46%] left-0 z-30 flex flex-col max-[680px]:hidden">
@@ -16,12 +18,14 @@ export function EdgeRail({
       >
         Speak to us
       </Link>
-      <a
-        href={prospectusHref}
-        className="bg-[#ececea] px-[9px] py-[22px] text-[11px] tracking-[3px] text-[#6d6d77] uppercase transition-colors [writing-mode:vertical-rl] [transform:rotate(180deg)] hover:bg-[#e0e0dd] hover:text-ink"
-      >
-        {prospectusLabel}
-      </a>
+      {showProspectus && (
+        <a
+          href={prospectusHref}
+          className="bg-[#ececea] px-[9px] py-[22px] text-[11px] tracking-[3px] text-[#6d6d77] uppercase transition-colors [writing-mode:vertical-rl] [transform:rotate(180deg)] hover:bg-[#e0e0dd] hover:text-ink"
+        >
+          {prospectusLabel}
+        </a>
+      )}
     </div>
   );
 }

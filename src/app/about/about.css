@@ -152,5 +152,28 @@
 .pg-about .closing{padding:38px 26px}
 .pg-about .btn{width:100%;justify-content:center}
 }
+/* ---- By the numbers ---- */
+.pg-about .impact{padding:28px 0 76px}
+.pg-about .impact-panel{background:var(--panel);border-radius:14px;padding:44px 44px 44px;display:grid;grid-template-columns:200px 1fr;gap:28px 40px}
+.pg-about .impact-label{font-size:13px;color:var(--ink-soft);padding-top:8px}
+.pg-about .impact-head{font-family:var(--display);font-weight:500;font-size:clamp(26px,3.2vw,42px);line-height:1.12;letter-spacing:-.02em;color:var(--ink);max-width:28ch}
+.pg-about .impact-head .grad{background:linear-gradient(90deg,#8a7cc4 0%,#c98a9a 50%,var(--gold) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pg-about .impact-head .soft{color:var(--muted-2)}
+.pg-about .impact-cards{grid-column:2;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px}
+.pg-about .icard{background:#fff;border-radius:8px;padding:22px 20px 20px;min-height:200px;display:flex;flex-direction:column;justify-content:space-between;gap:28px;box-shadow:0 1px 2px rgba(20,20,26,.04)}
+.pg-about .icard .num{font-family:var(--display);font-weight:500;font-size:clamp(30px,2.9vw,40px);line-height:1;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pg-about .icard .num sup{font-size:.45em;font-weight:500;vertical-align:top;position:relative;top:.1em;margin-left:2px;color:var(--plum)}
+.pg-about .icard p{font-size:13px;line-height:1.5;color:var(--ink-soft);max-width:20ch}
+@media (max-width:1000px){
+  .pg-about .impact-panel{grid-template-columns:1fr;padding:34px 28px}
+  .pg-about .impact-label{padding-top:0}
+  .pg-about .impact-cards{grid-column:1;grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:680px){
+  .pg-about .impact{padding:12px 0 56px}
+  .pg-about .impact-panel{padding:28px 18px;border-radius:12px}
+  .pg-about .impact-cards{gap:10px}
+  .pg-about .icard{min-height:160px;padding:18px 16px}
+}
 .pg-about section[id]{scroll-margin-top:74px}
 }

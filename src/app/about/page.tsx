@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { CountUp } from "@/components/count-up";
 import { EdgeRail } from "@/components/edge-rail";
 import { OnPageNav } from "@/components/on-page-nav";
 import { SiteFooter } from "@/components/site-footer";
@@ -7,6 +8,7 @@ import { SiteHeader } from "@/components/site-header";
 import "./about.css";
 
 const onPage = [
+  { href: "#by-the-numbers", label: "By the numbers" },
   { href: "#the-name", label: "The name" },
   { href: "#every-student-deserves-the-r", label: "About us" },
   { href: "#education-stopped-being-a-co", label: "Why we started" },
@@ -24,7 +26,7 @@ export default function AboutPage() {
   return (
     <>
       <div className="pg-about">
-        <EdgeRail />
+        <EdgeRail showProspectus={false} />
         <SiteHeader />
       </div>
       <OnPageNav items={onPage} />
@@ -38,6 +40,18 @@ export default function AboutPage() {
           </div>
           <div className="ptmedia">
             <Image src="/img/about-hero.jpg" width={1500} height={714} alt="A parent and child at home together at a laptop" />
+          </div>
+        </section>
+        <section id="by-the-numbers" className="impact shell" aria-labelledby="impact-h">
+          <div className="impact-panel">
+            <div className="impact-label">By the numbers</div>
+            <h2 className="impact-head" id="impact-h">Education that reaches <span className="grad">students, schools and families</span> <span className="soft">across six countries.</span></h2>
+            <div className="impact-cards">
+              <div className="icard"><div className="num"><CountUp end={60000} /><sup>+</sup></div><p>Students supported by Chrysalis</p></div>
+              <div className="icard"><div className="num"><CountUp end={150} /><sup>+</sup></div><p>Schools working with us</p></div>
+              <div className="icard"><div className="num"><CountUp end={1000} /><sup>+</sup></div><p>Families on EDU Concierge</p></div>
+              <div className="icard"><div className="num"><CountUp end={6} /></div><p>Countries where we operate</p></div>
+            </div>
           </div>
         </section>
         <section id="the-name" className="band shell">

@@ -23,7 +23,7 @@ export default function CareersPage() {
   return (
     <>
       <div className="pg-careers">
-        <EdgeRail />
+        <EdgeRail showProspectus={false} />
         <SiteHeader />
       </div>
       <OnPageNav items={onPage} />
