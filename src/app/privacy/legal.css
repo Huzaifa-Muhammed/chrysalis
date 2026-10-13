@@ -1,0 +1,41 @@
+/* Legal page layout, ported from privacy.html / terms.html. Builds on about.css tokens. */
+@layer pages {
+.pg-about .legal-top{padding-top:34px;padding-bottom:40px;border-bottom:1px solid var(--line)}
+.pg-about .legal-top .eyebrow{margin-bottom:20px}
+.pg-about .legal-top h1{font-family:var(--display);font-size:clamp(36px,4.4vw,58px);font-weight:500;line-height:1.06;letter-spacing:-.03em}
+.pg-about .legal-top h1 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:0}
+.pg-about .legal-top .lede{margin-top:20px;font-size:16px;line-height:1.75;color:var(--ink-soft);max-width:64ch}
+.pg-about .legal-meta{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:22px;font-family:var(--mono);font-size:12px;letter-spacing:.5px;color:var(--muted)}
+.pg-about .legal-meta a{color:var(--plum);text-decoration:underline;text-underline-offset:3px}
+.pg-about .legal{display:grid;grid-template-columns:240px minmax(0,1fr);gap:64px;padding-top:48px;padding-bottom:96px}
+.pg-about .ltoc{position:sticky;top:24px;align-self:start;max-height:calc(100vh - 48px);overflow:auto}
+.pg-about .ltoc .k{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted-3);margin-bottom:14px}
+.pg-about .ltoc ol{list-style:none;margin:0;padding:0;counter-reset:t}
+.pg-about .ltoc li{counter-increment:t}
+.pg-about .ltoc a{display:flex;gap:10px;padding:7px 0 7px 12px;font-size:13.5px;line-height:1.4;color:var(--muted);border-left:2px solid var(--line);transition:color .15s,border-color .15s}
+.pg-about .ltoc a::before{content:counter(t,decimal-leading-zero);font-family:var(--mono);font-size:11px;color:var(--muted-3);padding-top:2px}
+.pg-about .ltoc a:hover{color:var(--ink)}
+.pg-about .ltoc a.on{color:var(--plum);border-left-color:var(--plum)}
+.pg-about .lbody{max-width:72ch;counter-reset:s}
+.pg-about .lbody section{padding:6px 0 30px;scroll-margin-top:24px;counter-increment:s}
+.pg-about .lbody section+section{border-top:1px solid var(--line-2);padding-top:30px}
+.pg-about .lbody h2{font-family:var(--display);font-size:clamp(21px,2.1vw,26px);font-weight:600;line-height:1.25;letter-spacing:-.01em;margin-bottom:14px;display:flex;gap:14px;align-items:baseline}
+.pg-about .lbody h2::before{content:counter(s,decimal-leading-zero);font-family:var(--mono);font-size:12px;font-weight:400;color:var(--muted-3);letter-spacing:1px}
+.pg-about .lbody h3{font-family:var(--display);font-size:16px;font-weight:600;margin:22px 0 8px}
+.pg-about .lbody p,.pg-about .lbody li{font-size:15px;line-height:1.8;color:var(--ink-soft)}
+.pg-about .lbody p+p{margin-top:12px}
+.pg-about .lbody ul{margin:10px 0 0;padding-left:20px}
+.pg-about .lbody li{margin-bottom:6px}
+.pg-about .lbody strong{color:var(--ink);font-weight:600}
+.pg-about .lbody a{color:var(--plum);text-decoration:underline;text-underline-offset:3px}
+.pg-about .callout{margin:18px 0 4px;padding:20px 22px;background:var(--cream);border-left:3px solid var(--plum);border-radius:0 10px 10px 0}
+.pg-about .callout .ck{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--plum);margin-bottom:8px}
+.pg-about .callout p{color:var(--ink)}
+.pg-about .ltable{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px}
+.pg-about .ltable-wrap{overflow-x:auto}
+.pg-about .ltable th,.pg-about .ltable td{text-align:left;vertical-align:top;padding:12px 14px 12px 0;border-bottom:1px solid var(--line-2);line-height:1.6;color:var(--ink-soft)}
+.pg-about .ltable th{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted-3);font-weight:400}
+.pg-about .ltable td:first-child{color:var(--ink);font-weight:500;min-width:150px}
+.pg-about .fillin{background:#fff3cf;color:#7a5600;border-radius:4px;padding:1px 6px;font-family:var(--mono);font-size:.86em}
+@media (max-width:1000px){.pg-about .legal{grid-template-columns:1fr;gap:28px;padding-top:28px}.pg-about .ltoc{position:static;max-height:none;border:1px solid var(--line);border-radius:12px;padding:18px 18px 10px}}
+}
