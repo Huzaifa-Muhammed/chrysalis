@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { saveWebsiteSubmission } from "@/lib/firebase";
 import { joinDefaultPlan, joinPlanOptions, onboardingSteps } from "@/content/concierge";
 
 /**
@@ -12,6 +13,8 @@ import { joinDefaultPlan, joinPlanOptions, onboardingSteps } from "@/content/con
 export function JoinModal() {
   const [open, setOpen] = useState(false);
   const [sent, setSent] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState(false);
   const [plan, setPlan] = useState(joinDefaultPlan);
   const panelRef = useRef<HTMLDivElement>(null);
   const firstFieldRef = useRef<HTMLInputElement>(null);
@@ -53,26 +56,33 @@ export function JoinModal() {
     };
   }, [open, close]);
 
-  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (saving) return;
     const data = new FormData(event.currentTarget);
     const value = (name: string) => String(data.get(name) ?? "").trim();
-    const notes = value("notes");
-    const body =
-      `Parent name: ${value("parent")}\n` +
-      `Contact number: ${value("phone")}\n` +
-      `Student name: ${value("student")}\n` +
-      `Class / year: ${value("year")}\n` +
-      `School: ${value("school")}\n` +
-      `City & country: ${value("city")}\n` +
-      `Membership level: ${value("plan")}\n` +
-      (notes ? `\nNotes: ${notes}\n` : "");
-    const subject = `EDU Concierge — ${value("plan") || "enquiry"} — ${value("student")}`;
-    window.location.href =
-      "mailto:concierge@chrysalis.education" +
-      `?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSent(true);
-    if (panelRef.current) panelRef.current.scrollTop = 0;
+    setSaving(true);
+    setError(false);
+    try {
+      await saveWebsiteSubmission("edu-concierge-get-started", {
+        parentName: value("parent"),
+        phone: value("phone"),
+        studentName: value("student"),
+        classYear: value("year"),
+        school: value("school"),
+        cityCountry: value("city"),
+        plan: value("plan"),
+        notes: value("notes"),
+        page: window.location.pathname,
+      });
+      setSent(true);
+      if (panelRef.current) panelRef.current.scrollTop = 0;
+    } catch (err) {
+      console.error("Could not save Get Started form", err);
+      setError(true);
+    } finally {
+      setSaving(false);
+    }
   }
 
   if (!open) return null;
@@ -241,12 +251,21 @@ export function JoinModal() {
                 <span className="font-nova-body tracking-normal normal-case">optional</span>
                 <textarea name="notes" rows={3} className={`${field} resize-y`} />
               </label>
-              <button type="submit" className={sendButton}>
-                Send and get started
+              {error && (
+                <p role="alert" className="mb-3 text-center text-[13px] text-red-600">
+                  Sorry, we couldn&rsquo;t send your details. Please try again, or email
+                  concierge@chrysalis.education.
+                </p>
+              )}
+              <button
+                type="submit"
+                disabled={saving}
+                className={`${sendButton} disabled:opacity-60`}
+              >
+                {saving ? "Sending…" : "Send and get started"}
               </button>
               <p className="mt-3 text-center text-xs text-nova-muted-2">
-                ✓ Cancel within 14 days for a full refund · opens your email app to send
-              </p>
+                ✓ Cancel within 14 days for a full refund              </p>
             </form>
           </>
         )}
